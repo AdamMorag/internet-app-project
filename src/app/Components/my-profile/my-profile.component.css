@@ -21,6 +21,7 @@
 .username {
   font-size: 40px;
   margin-bottom: 10px;
+  text-shadow: 2px 2px #808080	;
 }
 
 button {
