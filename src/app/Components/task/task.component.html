@@ -1,0 +1,22 @@
+<mat-card class="task-card-content" [class.out-of-board-task]="showOpenBoard" [style.border-color]="task.owner.color">
+  <div class="task-title">{{task.title}}</div>
+  <div class="task-container">
+    <div>משויך ל:</div>
+    <img *ngIf="task.owner.image !== undefined" [src]="task.owner.image" class="member-img">
+    <img *ngIf="task.owner.image === undefined" src="/assets/src/unknown.jpg" class="member-img">
+    <span>{{task.owner.name}}</span>
+    <br/>
+  </div>
+  <div class="task-board-name" *ngIf="showOpenBoard">
+    <a [routerLink]="['/board', task.boardId]">{{task.boardName}}</a>
+  </div>
+  <mat-progress-bar *ngIf="showProgressBar" mode="determinate" [value]="calculateCompletedPrecentage(task)"></mat-progress-bar>
+  <div class="actions-container">
+    <div class="button" (click)="openEditTaskDialog()"><span class="fa fa-edit"></span></div>
+    <!-- <button mat-raised-button (click)="openEditTaskDialog()" *ngIf="showEdit" color="primary" class="primary-color-hover"><span class="fa fa-edit"></span> ערוך</button> -->
+    <div class="button" (click)="openDeleteTaskDialog()"><span class="fa fa-trash-alt"></span></div>
+    <!-- <button mat-raised-button (click)="openDeleteTaskDialog()" *ngIf="showDelete" color="primary" class="primary-color-hover"><span class="fa fa-trash-alt"></span> מחק</button> -->
+    <!-- <div *ngIf="showOpenBoard" [routerLink]></div> -->
+    <!-- <button mat-raised-button *ngIf="showOpenBoard" [routerLink]="['/board', task.boardId]" color="primary" class="primary-color-hover"><span class="fa fa-clipboard-list"></span> פתח לוח</button> -->
+  </div>
+</mat-card>

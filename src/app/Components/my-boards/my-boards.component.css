@@ -1,0 +1,59 @@
+mat-spinner {
+    margin: auto;
+}
+
+mat-card {
+    width: calc(25% - 20px);
+    margin-left: 5px;
+    margin-bottom: 10px;
+}
+
+mat-card mat-card-title {
+    font-size: 19px;
+}
+
+section {
+    margin: 5%;
+}
+
+section mat-card {
+    margin: 1%;
+    background-color: lightblue
+}
+
+mat-card-actions {
+    text-align: center;
+}
+
+button {
+  direction: rtl;
+}
+
+.cards-container {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 15px;
+    direction: rtl;
+}
+
+.button {
+  cursor: pointer;
+}
+
+.actions-container {
+  display: flex;
+  position: absolute;
+  top: 10px;
+  left: 10px;
+}
+
+.actions-container .button {
+  margin-right: 5px;
+}
+
+.board-category-img {
+  height: 32px;
+  width: 32px;
+  border-radius: 50%;
+  margin-bottom: 5px;
+}

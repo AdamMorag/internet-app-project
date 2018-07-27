@@ -1,0 +1,53 @@
+<div class="create-event-container">
+  <h1 mat-dialog-title>הוספת אירוע</h1>
+  <div mat-dialog-content>
+    <section>
+      <mat-form-field>
+        <input matInput [formControl]="title" placeholder="שם אירוע">
+        <mat-error *ngIf="title.hasError('required')">
+          שם אירוע הוא שדה חובה
+        </mat-error>
+      </mat-form-field>
+    </section>
+    <section class="datetime-picker">
+      <label>תאריך תחילה</label>
+        <date-time-picker
+          [(ngModel)]="startDate"
+          placeholder="תאריך תחילה">
+        </date-time-picker>
+    </section>
+    <section class="datetime-picker">
+        <label>תאריך סיום</label>
+        <date-time-picker
+          [(ngModel)]="endDate"
+          placeholder="תאריך סיום">
+        </date-time-picker>
+    </section>
+    <!--<section>
+      <mat-form-field>
+        <input matInput [matDatepicker]="start" placeholder="תאריך תחילה" [formControl]="startDate" [max]=endDate.value>
+        <mat-datepicker-toggle matSuffix [for]="start"></mat-datepicker-toggle>
+        <mat-datepicker #start></mat-datepicker>
+        <mat-error *ngIf="startDate.hasError('required')">
+          תאריך תחילה הוא שדה חובה
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput [matDatepicker]="end" placeholder="תאריך סיום" [formControl]="endDate" [min]="startDate.value">
+        <mat-datepicker-toggle matSuffix [for]="end"></mat-datepicker-toggle>
+        <mat-datepicker #end></mat-datepicker>
+        <mat-error *ngIf="endDate.hasError('required')">
+          תאריך סיום הוא שדה חובה
+        </mat-error>
+      </mat-form-field>
+    </section>-->
+  </div>
+  <div mat-dialog-actions class="dialog-actions">
+    <button mat-raised-button class="primary-color-hover" color="primary" [mat-dialog-close]="submitForm()" [disabled]="!formIsValid()"><span class="fa fa-calendar-alt"></span>
+      צור
+    </button>
+    <button mat-raised-button class="primary-color-hover" color="primary" mat-dialog-close (click)="cancelDialog()"><span class="fa fa-times-circle"></span> 
+      ביטול
+    </button>
+  </div>
+</div>

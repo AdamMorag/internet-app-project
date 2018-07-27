@@ -1,0 +1,50 @@
+<div class="edit-task-container">
+  <h1 mat-dialog-title>עריכת משימה</h1>
+  <div mat-dialog-content>
+    <section>
+      <mat-form-field>
+        <input matInput [(ngModel)]="task.title" placeholder="שם משימה">
+      </mat-form-field>
+    </section>
+    <section>
+      <section>
+        <mat-form-field>
+          <input matInput type="number" [(ngModel)]="task.overallTime" placeholder="זמן כולל למשימה">
+        </mat-form-field>
+      </section>
+      <section>
+        <mat-form-field>
+          <input matInput type="number" [(ngModel)]="task.remainingTime" placeholder="הזמן שנשאר למשימה">
+        </mat-form-field>
+      </section>
+    </section>
+    <section>
+      <mat-form-field>
+        <mat-select [(ngModel)]="task.status">
+          <mat-option value="waiting">Waiting</mat-option>
+          <mat-option value="active">Active</mat-option>
+          <mat-option value="done">Done</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </section>
+    <section class="choose-task-owner">
+      <mat-form-field>
+        <mat-select [compareWith]="compareFn" [(ngModel)]="task.owner" [disabled]="!boardMembers" [value]="task.owner">
+          <mat-option *ngFor="let member of boardMembers" [value]="member">
+            <img *ngIf="member.image !== undefined" [src]="member.image" class="member-img">
+            <img *ngIf="member.image === undefined" src="/assets/src/unknown.jpg" class="member-img">
+            {{ member.name }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </section>
+  </div>
+  <div mat-dialog-actions class="dialog-actions">
+    <button mat-raised-button color="primary" class="primary-color-hover" [mat-dialog-close]="submitForm()"><span class="fa fa-edit"></span>
+      עדכן
+    </button>
+    <button mat-raised-button color="primary" class="primary-color-hover" mat-dialog-close (click)="cancelDialog()"><span class="fa fa-times-circle"></span> 
+      ביטול
+    </button>
+  </div>
+</div>

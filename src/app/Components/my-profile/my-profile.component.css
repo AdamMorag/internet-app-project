@@ -1,0 +1,48 @@
+.profile {
+  margin-top:  35px;
+}
+
+.profile-details {
+  direction: rtl;
+  height: 40px;
+  font-size: 1.5em;
+}
+
+.profile-img {
+  margin-bottom:  15px;
+  border-radius: 50%;
+  width: 120px;
+  height: 120px;
+  opacity: 0;
+  transform: scale(0);
+  animation: pops-in 0.8s forwards;
+}
+
+.username {
+  font-size: 40px;
+  margin-bottom: 10px;
+}
+
+button {
+  margin-top: 20px;
+}
+
+.center {
+    width: 100px;
+    margin: auto;
+}
+
+@keyframes pops-in {
+  0% {
+    opacity: 0;
+    transform: scale(0);
+  }
+  70% {
+    transform: scale(1.2);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}

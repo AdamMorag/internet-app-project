@@ -1,0 +1,24 @@
+h1 {
+    text-align: center;
+}
+
+.create-event-container {
+    direction: rtl;
+}
+
+.dialog-actions {
+    direction: ltr;
+}
+
+input {
+    width: 100%;
+}
+
+.datetime-picker {
+  display: inline-block;
+  direction: ltr;
+}
+
+button {
+  direction: rtl;
+}

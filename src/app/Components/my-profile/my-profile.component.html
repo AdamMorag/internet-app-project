@@ -1,0 +1,25 @@
+<div>
+  <h1>הפרופיל שלי</h1>
+  <div class="line-separator"></div>
+  <mat-spinner *ngIf="loadingProfile" class="center" ></mat-spinner>
+  <section class="profile" [hidden]="loadingProfile">
+    <img src="{{this.currUser.image}}" class="profile-img">
+    <span class="profile-details">
+      <div>
+      <div class="username">
+        {{this.currUser.name}}
+      </div>
+    </div>
+    <div>
+      <span>צבע:</span>
+      <input type="color" [(ngModel)]="this.currUser.color" />
+    </div>
+    </span>
+    <div mat-dialog-actions class="dialog-actions">
+      <button mat-raised-button class="primary-color-hover center" color="primary" (click)="updateUser()">
+        <span class="fa fa-edit"></span>
+        עדכן
+      </button>
+    </div>
+  </section>
+</div>

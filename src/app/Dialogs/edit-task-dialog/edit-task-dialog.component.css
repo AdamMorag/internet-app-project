@@ -1,0 +1,27 @@
+h1 {
+    text-align: center;
+}
+
+.edit-task-container {
+    direction: rtl;
+}
+
+.dialog-actions {
+    direction: ltr;
+}
+
+input {
+    width: 100%;
+}
+
+.member-img {
+  height: 16px;
+  width: 16px;
+  margin-top: 5px;
+  margin-left: 10px;
+  border-radius: 50%;
+}
+
+button {
+  direction: rtl;
+}
