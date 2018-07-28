@@ -4,6 +4,11 @@
 @import "~ng-drag-drop/style.css";
 @import url('https://fonts.googleapis.com/css?family=Varela+Round');
 
+@font-face {
+    font-family: myFirstFont;
+    src: url('https://fonts.googleapis.com/css?family=Concert+One');
+}
+
 html, body, app-root {
     height: 100%;
 }

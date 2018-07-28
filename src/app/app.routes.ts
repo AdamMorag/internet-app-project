@@ -8,6 +8,7 @@ import { MyScheduleComponent } from './Components/my-schedule/my-schedule.compon
 import { MyScheduleResolveService } from './Services/my-schedule-resolve.service';
 import { LoginPageComponent } from './Components/login-page/login-page.component';
 import { MyProfileComponent } from './Components/my-profile/my-profile.component';
+import { AboutUsComponent } from './Components/about-us/about-us.component';
 
 export const routes: Routes = [
   { path: 'my-boards', component: MyBoardsComponent },
@@ -24,7 +25,8 @@ export const routes: Routes = [
       userEvents: MyScheduleResolveService
     }
   },
-  { path: '**', component: MyBoardsComponent }
+  { path: "about-us", component: AboutUsComponent },
+  { path: '**', component: MyBoardsComponent }  
 ];
 
 export const routing: ModuleWithProviders = RouterModule.forRoot(routes);

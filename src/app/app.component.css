@@ -96,3 +96,12 @@ mat-sidenav-content {
   height: 50px;
   line-height: 50px;
 }
+
+.auth-details > * {
+  display: block;  
+}
+
+.auth-details .text {
+  margin-left: 10px;
+  margin-right: 10px;
+}

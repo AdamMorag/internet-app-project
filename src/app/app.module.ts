@@ -72,6 +72,7 @@ import { TaskStatusChartPipe } from './Components/board-view/task-status-chart.p
 
 // Routes
 import { routing } from "./app.routes";
+import { AboutUsComponent } from './Components/about-us/about-us.component';
 
 const providers = {
   'google': {
@@ -102,7 +103,8 @@ const providers = {
     DatetimePickerComponent,
     MyProfileComponent,
     DeleteBoardDialogComponent,
-    EditBoardDialogComponent
+    EditBoardDialogComponent,
+    AboutUsComponent
   ],
   imports: [
     BrowserModule,
