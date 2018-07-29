@@ -74,6 +74,8 @@ import { TaskStatusChartPipe } from './Components/board-view/task-status-chart.p
 // Routes
 import { routing } from "./app.routes";
 import { AboutUsComponent } from './Components/about-us/about-us.component';
+import { MapComponent } from './Components/map/map.component';
+import { LocationsService } from './Services/locations.service';
 
 const providers = {
   'google': {
@@ -105,7 +107,8 @@ const providers = {
     MyProfileComponent,
     DeleteBoardDialogComponent,
     EditBoardDialogComponent,
-    AboutUsComponent
+    AboutUsComponent,
+    MapComponent
   ],
   imports: [
     BrowserModule,
@@ -148,7 +151,8 @@ const providers = {
     UsersService,
     CalendarsService,
     MyScheduleResolveService,
-    SocketManagerService
+    SocketManagerService,
+    LocationsService
   ],
   entryComponents: [
     CreateTaskDialogComponent,

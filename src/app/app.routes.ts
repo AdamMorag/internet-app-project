@@ -9,6 +9,7 @@ import { MyScheduleResolveService } from './Services/my-schedule-resolve.service
 import { LoginPageComponent } from './Components/login-page/login-page.component';
 import { MyProfileComponent } from './Components/my-profile/my-profile.component';
 import { AboutUsComponent } from './Components/about-us/about-us.component';
+import { MapComponent } from './Components/map/map.component';
 
 export const routes: Routes = [
   { path: 'my-boards', component: MyBoardsComponent },
@@ -26,6 +27,7 @@ export const routes: Routes = [
     }
   },
   { path: "about-us", component: AboutUsComponent },
+  { path: 'map', component: MapComponent },
   { path: '**', component: MyBoardsComponent }  
 ];
 

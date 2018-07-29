@@ -4,6 +4,7 @@ const MongoClient = require('mongodb').MongoClient;
 const ObjectID = require('mongodb').ObjectID;
 const uuidv4 = require('uuid/v4');
 const request = require('request-promise-native');
+const dbAccess = require('./dbAccess');
 
 // dbname
 const dbName = 'FlowDB';
@@ -491,5 +492,13 @@ router.get('/users/:uid', (req, res) => {
   });
 });
 
+router.get('/locations', (req, res) => {
+  dbAccess.getLocations()
+  .then((locations) => {
+    res.json(locations);
+  }).catch((error) => {
+    sendError(error, res);
+  });
+})
 
 module.exports = router;

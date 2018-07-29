@@ -15,6 +15,23 @@ const connection = (closure) => {
   });
 };
 
+function getLocations() {
+  return new Promise((resolve, reject) => {
+    connection((db) => {
+      let dbInstance = db.db(dbName);
+      dbInstance.collection('Locations')
+        .find()
+        .toArray()
+        .then((locations) => {
+          resolve(locations);
+        })
+        .catch((err) => {
+          reject(err);
+        });
+    });
+  });
+}
+
 function getBoardById (boardId) {
     return new Promise((resolve, reject) => {
       connection((db) => {
@@ -35,5 +52,6 @@ function getBoardById (boardId) {
   }
 
 module.exports = {
-    getBoardById: getBoardById
+    getBoardById: getBoardById,
+    getLocations: getLocations
 }
