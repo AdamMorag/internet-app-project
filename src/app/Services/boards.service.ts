@@ -3,11 +3,15 @@ import { Http, Headers, RequestOptions } from '@angular/http';
 import 'rxjs/add/operator/map';
 import { Observable } from 'rxjs/Observable';
 import { Board } from '../Objects/Board';
+import { SocketManagerService, EventName } from './socket-manager.service';
+import { AuthService } from 'angular2-social-login';
 
 @Injectable()
 export class BoardsService {
 
-  constructor(private _http: Http) { }
+  constructor(private _http: Http, 
+    private socketManager: SocketManagerService,
+    private socialLogin: AuthService) { }
 
   public getBoardsUserIsShareWith(userId: string) {
     return this._http.get("/api/boardsUserIsShareWith/" + userId)
@@ -32,6 +36,7 @@ export class BoardsService {
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');
 
+    this.socketManager.emitEvent(EventName.boardUpdated, { boardId: board.boardId, userUpdating: localStorage.getItem("uid") })
     return this._http.post("/api/updateBoard", board, { headers: headers });
   }
 

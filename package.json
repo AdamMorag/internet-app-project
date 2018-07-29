@@ -24,6 +24,7 @@
     "@angular/platform-browser-dynamic": "^5.0.0",
     "@angular/router": "^5.0.0",
     "@ng-bootstrap/ng-bootstrap": "^1.0.4",
+    "@types/socket.io": "^1.4.36",
     "angular-calendar": "^0.23.7",
     "angular2-social-login": "^3.1.1",
     "body-parser": "^1.18.2",
@@ -37,6 +38,7 @@
     "request": "^2.86.0",
     "request-promise-native": "^1.0.5",
     "rxjs": "^5.5.2",
+    "socket.io": "^2.1.1",
     "zone.js": "^0.8.14"
   },
   "devDependencies": {

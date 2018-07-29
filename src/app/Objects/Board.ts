@@ -1,4 +1,5 @@
 export interface Board {
+  boardId?: string,
   title: string,
   startDate: Date,
   endDate: Date,

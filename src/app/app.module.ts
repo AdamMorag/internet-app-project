@@ -65,6 +65,7 @@ import { BoardViewResolveService } from "./Services/board-view-resolve.service";
 import { UsersService } from "./Services/users.service";
 import { CalendarsService } from './Services/calendars.service';
 import { MyScheduleResolveService } from './Services/my-schedule-resolve.service';
+import { SocketManagerService } from './Services/socket-manager.service';
 
 // Pipes
 import { TaskStatusPipe } from './Components/board-view/task-status.pipe';
@@ -146,7 +147,8 @@ const providers = {
     BoardViewResolveService,
     UsersService,
     CalendarsService,
-    MyScheduleResolveService
+    MyScheduleResolveService,
+    SocketManagerService
   ],
   entryComponents: [
     CreateTaskDialogComponent,

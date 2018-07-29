@@ -10,6 +10,7 @@ import { trigger, state, style, transition, animate, keyframes } from "@angular/
 import { MediaMatcher } from '@angular/cdk/layout';
 import { MatSnackBar } from '@angular/material';
 import { TasksService } from '../../Services/tasks.service';
+import { SocketManagerService } from '../../Services/socket-manager.service';
 
 @Component({
   selector: 'app-board-view',
@@ -38,6 +39,8 @@ import { TasksService } from '../../Services/tasks.service';
 export class BoardViewComponent implements OnInit, OnDestroy {
 
   private sub: Subscription;
+  private boardUpdatedSubs: Subscription;
+
 
   public columnNum: number;
   public chartColspan: number;
@@ -77,7 +80,21 @@ export class BoardViewComponent implements OnInit, OnDestroy {
 
   constructor(private route: ActivatedRoute, private _boardService: BoardsService,
     public dialog: MatDialog, media: MediaMatcher, public _taskService: TasksService,
-    public snackBar: MatSnackBar) {
+    public snackBar: MatSnackBar, private socketManager: SocketManagerService) {
+
+      this.boardUpdatedSubs = this.socketManager.navItem$.subscribe(boardId => {
+        if (this.board && this.board.boardId === boardId) {
+          this._boardService.getBoard(boardId).subscribe(board => {
+            this.board = board;
+            this.doughnutChartData = [
+              this.waitingTasks().length,
+              this.activeTasks().length,
+              this.doneTasks().length
+            ]
+          });
+        }
+      });
+
     this.sub = this.route.data.subscribe((data: { board: any }) => {
       this.board = data.board;
       this.doughnutChartData = [
