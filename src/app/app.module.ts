@@ -76,6 +76,7 @@ import { routing } from "./app.routes";
 import { AboutUsComponent } from './Components/about-us/about-us.component';
 import { MapComponent } from './Components/map/map.component';
 import { LocationsService } from './Services/locations.service';
+import { WeatherComponent } from './Components/weather/weather.component';
 
 const providers = {
   'google': {
@@ -108,7 +109,8 @@ const providers = {
     DeleteBoardDialogComponent,
     EditBoardDialogComponent,
     AboutUsComponent,
-    MapComponent
+    MapComponent,
+    WeatherComponent
   ],
   imports: [
     BrowserModule,
