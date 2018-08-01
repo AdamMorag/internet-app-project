@@ -77,6 +77,7 @@ import { AboutUsComponent } from './Components/about-us/about-us.component';
 import { MapComponent } from './Components/map/map.component';
 import { LocationsService } from './Services/locations.service';
 import { WeatherComponent } from './Components/weather/weather.component';
+import { ShareButtonComponent } from './Components/share-button/share-button.component';
 
 const providers = {
   'google': {
@@ -110,7 +111,8 @@ const providers = {
     EditBoardDialogComponent,
     AboutUsComponent,
     MapComponent,
-    WeatherComponent
+    WeatherComponent,
+    ShareButtonComponent
   ],
   imports: [
     BrowserModule,
