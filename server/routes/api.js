@@ -35,73 +35,24 @@ let response = {
 router.get('/boardsUserIsShareWith/:userId', (req, res) => {
   const UserId = req.params.userId;
 
-  connection((db) => {
-    let dbInstance = db.db(dbName);
-    dbInstance.collection('Boards')
-      .find({
-        $and: [{
-          "boardMembers.uid": UserId
-        }, {
-          "boardOwner.uid": { $ne: UserId }
-        }]
-      })
-      .toArray()
-      .then((boards) => {
-        res.json(boards);
-      })
-      .catch((err) => {
-        sendError(err, res);
-      });
-  });
+  dbAccess.getBoardsUserIsShareWith(UserId)
+    .then((boards) => res.json(boards))
+    .catch((err) =>sendError(err, res));
 });
 
 router.get('/boardsUserIsManagerOf/:userId', (req, res) => {
   const UserId = req.params.userId;
-
-  connection((db) => {
-    let dbInstance = db.db(dbName);
-    dbInstance.collection('Boards')
-      .find({
-        "boardOwner.uid": UserId
-      })
-      .toArray()
-      .then((boards) => {
-        res.json(boards);
-      })
-      .catch((err) => {
-        sendError(err, res);
-      });
-  });
+  dbAccess.getBoardsUserIsManagerOf(UserId)
+  .then((boards) => res.json(boards))
+  .catch((err) =>sendError(err, res));  
 });
 
 router.get('/userTasks/:userId', (req, res) => {
   const UserId = req.params.userId;
 
-  connection((db) => {
-    let dbInstance = db.db(dbName);
-    dbInstance.collection('Boards')
-      .find({
-        $and: [{
-          "boardMembers.uid": UserId
-        }, {
-          "tasks.owner.uid": UserId
-        }]
-      })
-      .toArray()
-      .then((boards) => {
-        let taskArrays = boards.map(board => board.tasks.filter(task => task.owner.uid === UserId));
-        let result = [];
-        taskArrays.forEach(element => {
-          element.forEach(arr => {
-            result.push(arr);
-          });
-        });
-        res.json(result);
-      })
-      .catch((err) => {
-        sendError(err, res);
-      });
-  });
+  dbAccess.getUserTasks(UserId)
+  .then((tasks) => res.json(tasks))
+  .catch((err) =>sendError(err, res));   
 });
 
 router.get('/board/:boardId', (req, res) => {

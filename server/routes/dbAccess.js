@@ -32,26 +32,101 @@ function getLocations() {
   });
 }
 
-function getBoardById (boardId) {
-    return new Promise((resolve, reject) => {
-      connection((db) => {
-        let dbInstance = db.db(dbName);
-        dbInstance.collection('Boards')
-          .find({
-            "boardId": boardId
-          })
-          .toArray()
-          .then((board) => {
-            resolve(board[0]);
-          })
-          .catch((err) => {
-            reject(err);
-          });
-      });
+function getBoardById(boardId) {
+  return new Promise((resolve, reject) => {
+    connection((db) => {
+      let dbInstance = db.db(dbName);
+      dbInstance.collection('Boards')
+        .find({
+          "boardId": boardId
+        })
+        .toArray()
+        .then((board) => {
+          resolve(board[0]);
+        })
+        .catch((err) => {
+          reject(err);
+        });
     });
-  }
+  });
+}
+
+function getBoardsUserIsShareWith(userId) {
+  return new Promise((resolve, reject) => {
+    connection((db) => {
+      let dbInstance = db.db(dbName);
+      dbInstance.collection('Boards')
+        .find({
+          $and: [{
+            "boardMembers.uid": userId
+          }, {
+            "boardOwner.uid": { $ne: userId }
+          }]
+        })
+        .toArray()
+        .then((boards) => {
+          resolve(boards);
+        })
+        .catch((err) => {
+          reject(err);
+        });
+    });
+  });
+}
+
+function getBoardsUserIsManagerOf(userId) {
+  return new Promise((resolve, reject) => {
+    connection((db) => {
+      let dbInstance = db.db(dbName);
+      dbInstance.collection('Boards')
+        .find({
+          "boardOwner.uid": userId
+        })
+        .toArray()
+        .then((boards) => {
+          resolve(boards);
+        })
+        .catch((err) => {
+          reject(err);
+        });
+    });
+  });
+}
+
+function getUserTasks(userId) {
+  return new Promise((resolve, reject) => {
+    connection((db) => {
+      let dbInstance = db.db(dbName);
+      dbInstance.collection('Boards')
+        .find({
+          $and: [{
+            "boardMembers.uid": userId
+          }, {
+            "tasks.owner.uid": userId
+          }]
+        })
+        .toArray()
+        .then((boards) => {
+          let taskArrays = boards.map(board => board.tasks.filter(task => task.owner.uid === userId));
+          let result = [];
+          taskArrays.forEach(element => {
+            element.forEach(arr => {
+              result.push(arr);
+            });
+          });
+          resolve(result);
+        })
+        .catch((err) => {
+          reject(err);
+        });
+    });
+  });
+}
 
 module.exports = {
-    getBoardById: getBoardById,
-    getLocations: getLocations
+  getBoardById: getBoardById,
+  getLocations: getLocations,
+  getBoardsUserIsShareWith: getBoardsUserIsShareWith,
+  getBoardsUserIsManagerOf: getBoardsUserIsManagerOf,
+  getUserTasks: getUserTasks
 }
