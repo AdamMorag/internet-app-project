@@ -452,4 +452,12 @@ router.get('/locations', (req, res) => {
   });
 })
 
+router.get('/board/group/:boardId', (req, res) => {
+  const boardId = req.params.boardId;
+  dbAccess.getBoardWorkloadAggregation(boardId)
+  .then((result) => res.json(result))
+  .catch((err) =>sendError(err, res));   
+
+});
+
 module.exports = router;

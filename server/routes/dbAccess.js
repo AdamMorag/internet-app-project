@@ -123,10 +123,42 @@ function getUserTasks(userId) {
   });
 }
 
+function getBoardWorkloadAggregation(boardId) {
+  return new Promise((resolve, reject) => {
+    connection((db) => {
+      let dbInstance = db.db(dbName);
+      dbInstance.collection('Boards')
+        .aggregate([{
+          $match: {
+            boardId: boardId
+          }
+        },
+        {
+          $unwind: "$tasks"                    
+        },
+         {
+          $group: {
+            _id: "$tasks.owner",
+            totalRemainingWork: {
+              $sum: "$tasks.remainingTime"
+            }
+          }
+        }]).toArray()
+        .then((result) => {
+          resolve(result);
+        }).catch(e => {
+          console.log(e);
+          reject(e);
+        })
+    })
+  });
+}
+
 module.exports = {
   getBoardById: getBoardById,
   getLocations: getLocations,
   getBoardsUserIsShareWith: getBoardsUserIsShareWith,
   getBoardsUserIsManagerOf: getBoardsUserIsManagerOf,
-  getUserTasks: getUserTasks
+  getUserTasks: getUserTasks,
+  getBoardWorkloadAggregation: getBoardWorkloadAggregation
 }

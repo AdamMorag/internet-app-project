@@ -1,5 +1,5 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { MAT_DIALOG_DATA , MatDialogRef } from '@angular/material';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 import { Task } from "../../Objects/Task";
 
 @Component({
@@ -11,16 +11,44 @@ export class StatisticsDialogComponent implements OnInit {
   public doughnutChartLabels: string[];
   public doughnutChartData: number[];
 
+  public barChartLabels: string[] = []
+  public barChartType: string = 'bar';
+  public barChartLegend: boolean = true;
+  public barChartData: any[] = [];
+  public barChartOptions: any = {
+    scaleShowVerticalLines: false,
+    responsive: true,
+    scales: {
+      yAxes: [{
+        ticks: {
+          beginAtZero: true
+        }
+      }]
+    }
+  };  
+
   constructor(public dialogRef: MatDialogRef<StatisticsDialogComponent>, @Inject(MAT_DIALOG_DATA) public data: any) {
-    this.tasks = data;
+    this.tasks = data.tasks;
     this.doughnutChartData = [
       this.waitingTasks().length,
       this.activeTasks().length,
       this.doneTasks().length
     ]
 
+    const agg = data.aggregation;
+
+    this.barChartLabels = Array.from(agg.map(bucket => bucket._id.name));
+
+    this.barChartData = [
+      {
+        data: Array.from(agg.map(bucket => bucket.totalRemainingWork)),
+        label: "שעות עבודה שנשארו"
+      }
+    ];
+
     this.doughnutChartLabels = ["Waiting", "Active", "Done"];
   }
+
 
   ngOnInit() {
   }

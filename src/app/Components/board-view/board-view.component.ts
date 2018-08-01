@@ -174,9 +174,20 @@ export class BoardViewComponent implements OnInit, OnDestroy {
   }
 
   public openStatistics() {
-    let dialogRef = this.dialog.open(StatisticsDialogComponent, {
-      data: this.board.tasks
-    });
+    this.snackBar.open("מייבא סטטיסטיקות", undefined, {
+      direction: 'rtl'
+    })
+
+    this._boardService.getBoardRemainingWorkAggregation(this.board.boardId)
+    .subscribe((aggregation) => {
+      this.snackBar.dismiss();
+      let dialogRef = this.dialog.open(StatisticsDialogComponent, {
+        data: {
+          tasks: this.board.tasks,
+          aggregation: aggregation        
+        }
+      });
+    })
   }
 
   private chartData(): number[] {

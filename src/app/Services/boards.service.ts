@@ -69,4 +69,10 @@ export class BoardsService {
       return response.json();
     });
   }
+
+  public getBoardRemainingWorkAggregation(boardId: string): Observable<any> {
+    return this._http.get("/api/board/group/" + boardId)
+      .map(result =>
+        result.json());
+  }
 }
