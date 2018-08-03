@@ -7,6 +7,7 @@ import { DeleteBoardDialogComponent } from '../../Dialogs/delete-board-dialog/de
 import { EditBoardDialogComponent } from '../../Dialogs/edit-board-dialog/edit-board-dialog.component';
 import { MatSnackBar } from "@angular/material";
 import { Board } from '../../Objects/Board';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-my-boards',
@@ -33,6 +34,10 @@ import { Board } from '../../Objects/Board';
   ]
 })
 export class MyBoardsComponent implements OnInit {
+  public boardMemberName = new FormControl("");
+  public categoryId = new FormControl("");
+  public boardName = new FormControl("");
+
   public loadingBoardsIManage: boolean = true;
   public loadingBoardsImSharedWith: boolean = true;
 

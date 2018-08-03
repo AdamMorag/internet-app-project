@@ -1,14 +1,46 @@
 <div>
   <h1>הלוחות שלי</h1>
   <div class="line-separator"></div>
+  <div class="search-container">
+    <mat-form-field class="input-container">
+      <input matInput placeholder="שם חבר בלוח" [formControl]="boardMemberName">
+    </mat-form-field>
+    <mat-form-field>
+      <mat-select placeholder="בחר קטגוריה" [formControl]="categoryId">
+        <mat-option [value]="">
+          <img src="/assets/src/infinity.png" class="category-img"> הכל
+        </mat-option>
+        <mat-option [value]="1">
+          <img src="/assets/src/suitcase.jpg" class="category-img"> נסיעות
+        </mat-option>
+        <mat-option [value]="2">
+          <img src="/assets/src/development.png" class="category-img"> פיתוח
+        </mat-option>
+        <mat-option [value]="3">
+          <img src="/assets/src/friends.jpg" class="category-img"> חברים
+        </mat-option>
+        <mat-option [value]="4">
+          <img src="/assets/src/money.png" class="category-img"> כספים
+        </mat-option>
+        <mat-option [value]="5">
+          <img src="/assets/src/others.png" class="category-img"> שונות
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field class="input-container">
+      <input matInput placeholder="שם הלוח" [formControl]="boardName">
+    </mat-form-field>
+  </div>
+  <div class="line-separator"></div>
   <div class="my-boards-container">
     <h2>לוחות בניהולי</h2>
     <div>
-      <button mat-raised-button class="primary-color-hover" color="primary" (click)="openCreateBoardDialog()"><span class="fa fa-plus-circle"></span> צור לוח</button>
+      <button mat-raised-button class="primary-color-hover" color="primary" (click)="openCreateBoardDialog()">
+        <span class="fa fa-plus-circle"></span> צור לוח</button>
     </div>
     <div class="cards-container">
       <mat-spinner *ngIf="loadingBoardsIManage"></mat-spinner>
-      <mat-card [hidden]="loadingBoardsIManage" *ngFor="let board of boardsIManage">
+      <mat-card [hidden]="loadingBoardsIManage" *ngFor="let board of boardsIManage | boardName: boardName.value | boardCategory: categoryId.value | boardMemberName: boardMemberName.value">
         <img *ngIf="board.categoryId === undefined" src="/assets/src/unknown.jpg" class="board-category-img">
         <img *ngIf="board.categoryId === 1" src="/assets/src/suitcase.jpg" class="board-category-img">
         <img *ngIf="board.categoryId === 2" src="/assets/src/development.png" class="board-category-img">
@@ -17,12 +49,17 @@
         <img *ngIf="board.categoryId === 5" src="/assets/src/others.png" class="board-category-img">
         <mat-card-title>{{board.title}}</mat-card-title>
         <mat-card-actions>
-            <button mat-raised-button color="primary" [routerLink]="['/board', board.boardId]" class="primary-color-hover"><span class="fa fa-wrench"></span> נהל לוח</button>
-            <div class="actions-container">
-              <div class="button" (click)="openDeleteBoardDialog(board.boardId)"><span class="fa fa-trash"></span></div>
-              <div class="button" (click)="openEditBoardDialog(board)"><span class="fa fa-edit"></span></div>
+          <button mat-raised-button color="primary" [routerLink]="['/board', board.boardId]" class="primary-color-hover">
+            <span class="fa fa-wrench"></span> נהל לוח</button>
+          <div class="actions-container">
+            <div class="button" (click)="openDeleteBoardDialog(board.boardId)">
+              <span class="fa fa-trash"></span>
             </div>
-          </mat-card-actions>
+            <div class="button" (click)="openEditBoardDialog(board)">
+              <span class="fa fa-edit"></span>
+            </div>
+          </div>
+        </mat-card-actions>
       </mat-card>
     </div>
   </div>
@@ -31,8 +68,7 @@
     <h2>לוחות שאני שותף בהם</h2>
     <div class="cards-container">
       <mat-spinner *ngIf="loadingBoardsImSharedWith"></mat-spinner>
-      <mat-card [hidden]="loadingBoardsImSharedWith" [@flyInOut] (@flyInOut.done)="doNext()"
-      *ngFor="let board of staggeringboardsImShared">
+      <mat-card [hidden]="loadingBoardsImSharedWith" [@flyInOut] (@flyInOut.done)="doNext()" *ngFor="let board of staggeringboardsImShared | boardName: boardName.value | boardCategory: categoryId.value | boardMemberName: boardMemberName.value">
         <img *ngIf="board.categoryId === undefined" src="/assets/src/unknown.jpg" class="board-category-img">
         <img *ngIf="board.categoryId === 1" src="/assets/src/suitcase.jpg" class="board-category-img">
         <img *ngIf="board.categoryId === 2" src="/assets/src/development.png" class="board-category-img">
@@ -41,8 +77,9 @@
         <img *ngIf="board.categoryId === 5" src="/assets/src/others.png" class="board-category-img">
         <mat-card-title>{{board.title}}</mat-card-title>
         <mat-card-actions>
-            <button mat-raised-button color="primary" [routerLink]="['/board', board.boardId]" class="primary-color-hover"><span class="fa fa-clipboard-list"></span> פתח לוח</button>
-          </mat-card-actions>
+          <button mat-raised-button color="primary" [routerLink]="['/board', board.boardId]" class="primary-color-hover">
+            <span class="fa fa-clipboard-list"></span> פתח לוח</button>
+        </mat-card-actions>
       </mat-card>
     </div>
   </div>

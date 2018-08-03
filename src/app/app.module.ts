@@ -80,6 +80,9 @@ import { WeatherComponent } from './Components/weather/weather.component';
 import { ShareButtonComponent } from './Components/share-button/share-button.component';
 import { TaskNamePipe } from './Components/my-tasks/task-name.pipe';
 import { TaskBoardNamePipe } from './Components/my-tasks/task-board-name.pipe';
+import { BoardNamePipe } from './Components/my-boards/board-name.pipe';
+import { BoardCategoryPipe } from './Components/my-boards/board-category.pipe';
+import { BoardMemberNamePipe } from './Components/my-boards/board-member-name.pipe';
 
 const providers = {
   'google': {
@@ -116,7 +119,10 @@ const providers = {
     WeatherComponent,
     ShareButtonComponent,
     TaskNamePipe,
-    TaskBoardNamePipe    
+    TaskBoardNamePipe,
+    BoardNamePipe,
+    BoardCategoryPipe,
+    BoardMemberNamePipe    
   ],
   imports: [
     BrowserModule,
