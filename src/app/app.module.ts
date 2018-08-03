@@ -78,6 +78,8 @@ import { MapComponent } from './Components/map/map.component';
 import { LocationsService } from './Services/locations.service';
 import { WeatherComponent } from './Components/weather/weather.component';
 import { ShareButtonComponent } from './Components/share-button/share-button.component';
+import { TaskNamePipe } from './Components/my-tasks/task-name.pipe';
+import { TaskBoardNamePipe } from './Components/my-tasks/task-board-name.pipe';
 
 const providers = {
   'google': {
@@ -112,7 +114,9 @@ const providers = {
     AboutUsComponent,
     MapComponent,
     WeatherComponent,
-    ShareButtonComponent
+    ShareButtonComponent,
+    TaskNamePipe,
+    TaskBoardNamePipe    
   ],
   imports: [
     BrowserModule,

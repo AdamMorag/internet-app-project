@@ -26,3 +26,16 @@ app-task {
     display: table-cell;
     vertical-align: middle;    
 }
+
+.search-container{
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    width: 80%;
+    margin: 10px auto;                
+    justify-content: space-between;
+}
+
+.input-container {
+    width: 30%;
+}

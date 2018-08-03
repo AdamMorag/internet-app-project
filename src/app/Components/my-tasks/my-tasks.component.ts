@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { TasksService } from '../../Services/tasks.service';
 import { Task } from '../../Objects/Task';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-my-tasks',
@@ -12,11 +13,15 @@ export class MyTasksComponent implements OnInit {
   public myTasks: Task[];
   public loadingMyTasks = true;
 
+  taskName: FormControl = new FormControl("");
+  boardName: FormControl = new FormControl("");
+  taskStatus: FormControl = new FormControl("");
+
   constructor(private _tasksService: TasksService) {
     _tasksService.getUserTasks(localStorage.getItem("uid"))
       .subscribe(userTasks => {
         this.myTasks = userTasks
-        this.loadingMyTasks= false;
+        this.loadingMyTasks= false;        
       });
   }
 

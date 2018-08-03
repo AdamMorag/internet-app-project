@@ -8,8 +8,8 @@ import { Task } from '../../Objects/Task';
 export class TaskStatusPipe implements PipeTransform {
 
   transform(tasks: Task[], status: string): Task[] {
-    if (!tasks && !status)
-      return;
+    if (!status)
+      return tasks;
 
     return tasks.filter(t => t.status === status);
   }
