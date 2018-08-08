@@ -2,6 +2,7 @@
     height: 95%; 
     flex-direction: column;
     display: flex;
+    overflow-y: scroll;
 }
 
 .about-us .main-content { 
@@ -29,7 +30,7 @@
     font-family: myFirstFont, cursive;
 }
 
-.newspaper {        
+.columns {        
     column-count: 3;
     column-gap: 40px;
     column-rule-style: solid;
@@ -49,7 +50,7 @@ aside > p {
     margin: .5rem;
 }
 
-footer {
+footer {    
     width:100%;
     background-color: lightblue;
 }

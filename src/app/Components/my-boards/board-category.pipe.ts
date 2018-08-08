@@ -2,7 +2,8 @@ import { Pipe, PipeTransform } from '@angular/core';
 import { Board } from '../../Objects/Board';
 
 @Pipe({
-  name: 'boardCategory'
+  name: 'boardCategory',
+  pure: false
 })
 export class BoardCategoryPipe implements PipeTransform {
 
