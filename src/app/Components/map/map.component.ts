@@ -30,8 +30,8 @@ export class MapComponent implements OnInit {
         var infoWindow = new google.maps.InfoWindow({ map: this.map });
 
         var pos = {
-          lat: location.Latitude,
-          lng: location.Longitude
+          lat: location.location.coordinates[1],
+          lng: location.location.coordinates[0]
         };
 
         infoWindow.setPosition(pos);
@@ -40,8 +40,8 @@ export class MapComponent implements OnInit {
 
 
       var pos = {
-        lat: locations[0].Latitude,
-        lng: locations[0].Longitude
+        lat: locations[0].location.coordinates[1],
+        lng: locations[0].location.coordinates[0]
       };
 
       this.map.setCenter(pos);

@@ -1,3 +1,4 @@
 ﻿mongoimport --db FlowDB --collection Boards --file "נתיב שלכם"\Boards.json
 mongoimport --db FlowDB --collection Users --file "נתיב שלכם"\Users.json
 mongoimport --db FlowDB --collection Calendars --file "נתיב שלכם"\Calendars.json
+mongoimport --db FlowDB --collection Locations --file "נתיב שלכם"\Locations.json
